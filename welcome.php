@@ -21,9 +21,9 @@ if(!isset($_SESSION['user']['email'])) {
 	<title>Welcome</title>
 </head>
 <body>
-<div id="nav">
-<ul>
-	<?php
+  <div id="nav">
+    <ul>
+	  <?php
 		$query = $db->prepare("SELECT * FROM `pages` WHERE 1");
 		$query->execute();
 		$row = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -32,19 +32,16 @@ if(!isset($_SESSION['user']['email'])) {
 				echo "<li> <a href='" . $row[$x]['href'] . "'> " . $row[$x]['tag'] . " </a> </li>";
 			}
 		}
-		
-	?>
-</ul> 
+	  ?>
+   </ul> 
 </div>
-
-
-	<div class="content">
-		<?php
-		if(isset($_SESSION['user'])) {
-			echo "Welcome, " . $_SESSION['user']['name'] . "!";
-			echo "<a href='logout.php'> Log Out </a>";
-		}
-		?>
-	</div>
+  <div class="content">
+	  <?php
+		  if(isset($_SESSION['user'])) {
+				echo "Welcome, " . $_SESSION['user']['name'] . "!";
+				echo "<a href='logout.php'> Log Out </a>";
+			}
+	  ?>
+  </div>
 </body>
 </html>
