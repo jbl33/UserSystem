@@ -18,7 +18,7 @@ if(!isset($_SESSION['user']['email'])) {
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="style/navigation.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300&display=swap" rel="stylesheet">
-	<title>Welcome</title>
+	<title>FileUpload.One - Welcome</title>
 </head>
 <body>
   <div id="nav">
