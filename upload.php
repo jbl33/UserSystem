@@ -38,6 +38,7 @@ if(!isset($_SESSION['user']['email'])) {
   </div>
     <div class="content">
     <h1 id="title"><br> <b> Upload a File </b> </h1><br>
+    <form id="uploadForm" enctype="multipart/form-data">
       <div class="mb-3">
           <label for="fileName" class="form-label">Name</label>
           <input type="text" id="fileName" class="form-control" placeholder="My awesome file" style="max-width:50%;margin-left:25%">
@@ -50,7 +51,8 @@ if(!isset($_SESSION['user']['email'])) {
           <label for="file" class="form-label">File</label>
           <input type="file" id="file" class="form-control" name="file" style="max-width:50%;margin-left:25%">
           </div>
-			<button onclick="submit()" id="uploadButton" class="btn btn-primary">Upload</button>
+			<button id="uploadButton" class="btn btn-primary">Upload</button>
+        </form>
             <p id="response"></p>
     </div>
   </body>
@@ -66,11 +68,13 @@ if(!isset($_SESSION['user']['email'])) {
             }
         }
     };
-    function submit() {
+            
+    $("#uploadForm").on('submit', function(e){
+        e.preventDefault();
         if($("#fileName").val() == "") {
-            document.getElementById("response").innerHTML = "<p style='color:red'> File name not set! </p>";
+            setResponse("<p style='color:red'> File name not set! </p>");
         } else if(document.getElementById("file").files[0] == null) {
-            document.getElementById("response").innerHTML = "<p style='color:red'> File not selected </p>";
+            setResponse("<p style='color:red'> File not selected </p>");
         } else {
             // Check if password is present and if so put it in database
             var usePassword;
@@ -84,16 +88,27 @@ if(!isset($_SESSION['user']['email'])) {
             }
             // Good to submit ajax request here
             // Currently a base ajax request example below
+            setResponse("Uploading file...");
             $.ajax({
-            url: "script.php",
-            data: { param1: "value1", param2: "value2" },
-            type: "GET",
-            context: document.body
-            }).done(function() {
-            
+            type: 'POST',
+            url: "fileupload.php",
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            error: function() {
+                setResponse("<b> Error uploading file. </b>");
+            },
+            success: function(response) {
+                setResponse(response);
+            }
             });
 
         }
+    });
+
+    function setResponse(s) {
+        document.getElementById("response").innerHTML = s;
     }
     </script>
 </html>
