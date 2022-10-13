@@ -69,11 +69,10 @@
             echo "<input type=\"text\" id=\"api-key\" placeholder=\"". "A5SZtQBvJv2JMetm" ."\"></input>";
         }
         ?>
-        </div>
         <button id="search-btn"> Search User </button>
         <br> <p id="error-text"> </p>
         </div> <br>
         <div id="result-table"> </div>
-        <script src="/js/search.js"></script>
+        <script src="js/search.js"></script>
     </body>
 </html>

@@ -6,7 +6,6 @@ $( document ).ready(function() {
         } else {
             var search_query = $("#search-box").val();
             var apiKey = $("#api-key").val();
-            var table;
             $.ajax({
                 url: "buildtable.php",
                 data: { query: search_query, apiKey: apiKey},

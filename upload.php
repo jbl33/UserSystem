@@ -79,6 +79,7 @@ if(!isset($_SESSION['user']['email'])) {
             // Check if password is present and if so put it in database
             var usePassword;
             var filePassword;
+            var fileName = document.getElementById("fileName").value;
 
             if($("#password").val() == "") {
                 usePassword = 0;
@@ -86,13 +87,22 @@ if(!isset($_SESSION['user']['email'])) {
             } else {
                 filePassword = $("#password").val();
             }
+
+            var apiKey='<?php echo $_SESSION['user']['apiKey']?>';
+            var formData = new FormData(this);
+            /*
+                Getting all PHP variables needed to submit request
+            */
+            formData.append('password', filePassword);
+            formData.append('apiKey', apiKey);
+            formData.append('fileName', fileName);
             // Good to submit ajax request here
             // Currently a base ajax request example below
             setResponse("Uploading file...");
             $.ajax({
             type: 'POST',
             url: "fileupload.php",
-            data: new FormData(this),
+            data: formData,
             contentType: false,
             cache: false,
             processData:false,
@@ -101,6 +111,7 @@ if(!isset($_SESSION['user']['email'])) {
             },
             success: function(response) {
                 setResponse(response);
+                resetForm();
             }
             });
 
@@ -110,5 +121,12 @@ if(!isset($_SESSION['user']['email'])) {
     function setResponse(s) {
         document.getElementById("response").innerHTML = s;
     }
+
+    function resetForm() {
+        document.getElementById("fileName").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("file").value = "";
+    }
+
     </script>
 </html>
