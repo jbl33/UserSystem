@@ -1,6 +1,6 @@
 <?php
-require_once 'connection.php';
-if(isset($_GET['apiKey']) and $_GET['apiKey'] != null) {
+require_once 'required/connection.php';
+if(isset($_GET['apiKey'])) {
     $select_stmt = $db->prepare("SELECT * from users WHERE apiKey LIKE :apiKey LIMIT 1");
 		$select_stmt->execute([
 			':apiKey' => $_GET['apiKey']
@@ -16,7 +16,7 @@ if(isset($_GET['apiKey']) and $_GET['apiKey'] != null) {
                     ':email' => "%" . $_GET['query'] . "%"
                 ]);
                 $row = $select_stmt->fetchAll(PDO::FETCH_ASSOC);
-                echo "<table id='user-table'>";
+                echo "<table class='user-table' style='margin: 0 auto'>";
                 echo "<tr>
                         <th> ID </th>
                         <th> Name </th>

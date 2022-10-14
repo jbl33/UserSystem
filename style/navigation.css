@@ -3,12 +3,11 @@
     margin: 0;
     padding: 0;
     width: 15%;
-    background-color: #f1f1f1;
+    background-color: #edeff0;
     position: fixed;
     height: 100%;
     overflow: auto;
   }
-  
 #nav li a {
     display: block;
     color: #000;
@@ -16,17 +15,14 @@
     text-decoration: none;
     font-size: 25px;
   }
-  
 #nav li a:active {
     background-color: #04AA6D;
     color: green;
   }
-  
 #nav li a:hover {
     background-color: rgb(230, 230, 230);
     font-weight: bold;
   }
-
 body {
     font-family: 'Inter Tight', sans-serif;
 }
@@ -79,4 +75,43 @@ body {
     margin: 0 auto;
     border-spacing: 20px 0;
     text-align: center;
+}
+.content #title {
+    padding-top: 40px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#result-table {
+    margin: 0 auto;
+}
+#result-display {
+    padding-top: 10px;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 0.9em;
+    font-family: 'Inter Tight', sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #edeff0;
+    color: #000000;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #edeff0;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #1a9eeb;
 }

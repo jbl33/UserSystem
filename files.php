@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once 'required/connection.php';
 session_start();
 if(!isset($_SESSION['user']['email'])) {
 	session_start();
@@ -18,6 +18,7 @@ if(!isset($_SESSION['user']['email'])) {
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	    <link rel="stylesheet" type="text/css" href="style/navigation.css">
 	    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300&display=swap" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
       <div id="nav">
@@ -35,12 +36,22 @@ if(!isset($_SESSION['user']['email'])) {
      </ul> 
   </div>
     <div class="content">
+		<h1 id="title"> Your Files </h1>
       <?php
-	    if(isset($_SESSION['user'])) {
-		    echo "Welcome, " . $_SESSION['user']['name'] . "!";
-		    echo "<a href='logout.php'> Log Out </a>";
-	    }
+	    if(isset($_SESSION['user']['apiKey'])) {
+		    
+	    } else {
+			echo "Error loading your files. Try logging in and out.";
+		}
 	  ?>
+	  <div id="result-display"></div>
     </div>
+	<script>
+		/*
+			Grabbing PHP variables in Javascript / Needed for AJAX call
+		*/
+		var apiKey = "<?php if(isset($_SESSION['user']['apiKey'])) {echo $_SESSION['user']['apiKey']; }?>";
+	</script>
+	<script src="js/filesearch.js"> </script>
   </body>
 </html>

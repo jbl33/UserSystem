@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once 'required/connection.php';
     if(isset($_FILES['file']) and isset($_POST['apiKey']) and isset($_POST['password']) and isset($_POST['fileName'])) {
         $apiKey = $_POST['apiKey'];
         $targetDir = "uploads/"; 

@@ -1,5 +1,5 @@
 <?php
-    require_once 'connection.php';
+    require_once 'required/connection.php';
     session_start();
     if(!isset($_SESSION['user']) or $_SESSION['user']['adminPermissions'] != 1) {
         session_start();
